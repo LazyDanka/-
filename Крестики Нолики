@@ -1,0 +1,34 @@
+while True:
+    print('*'*10, 'НОВАЯ ИГРА', '*'*10)
+    board = list(range(1,10))
+    hod = 'X'
+    for i in range(3):
+            print("|", board[0+i*3], "|", board[1+i*3], "|", board[2+i*3], "|")
+    for a in range(1,10):
+        while True:
+            player = int(input('Куда поставить '+hod+'?'))
+            if player not in range(1,10):
+                print('ЭТОЙ КЛЕТКИ НЕ СУЩЕСТВУЕТ')
+            elif board[player-1] == 'X' or board[player-1] == 'O':
+                print('Клетка занята')
+            else:
+                break
+        board[player-1] = hod
+        for i in range(3):
+            print("|", board[0+i*3], "|", board[1+i*3], "|", board[2+i*3], "|")
+        if (board[0] == hod and board[1] == hod and board[2] == hod) or \
+            (board[3] == hod and board[4] == hod and board[5] == hod) or \
+            (board[6] == hod and board[7] == hod and board[8] == hod) or \
+            (board[0] == hod and board[3] == hod and board[6] == hod) or \
+            (board[1] == hod and board[4] == hod and board[7] == hod) or \
+            (board[2] == hod and board[5] == hod and board[8] == hod) or \
+            (board[0] == hod and board[4] == hod and board[8] == hod) or \
+            (board[2] == hod and board[4] == hod and board[6] == hod):
+            print('Вы собрали три,', hod, 'в ряд!!ПОБЕДА!!')
+            break
+        if hod == 'X':
+            hod = 'O'
+        else:
+            hod = 'X'
+    if a == 9:
+        print('Ничья')
