@@ -1,0 +1,8 @@
+import random
+symb = "ёйцукенгшщзхъфывапролджэячсмитьбюЙЦУКЕНГШЩЗХЪЁФЫВАПРОЛДЖЭЯЧСМИТЬБЮ+-/*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+leng = int(input("Длина пароля"))
+cod = []
+for i in range(leng):
+    pas = random.randint(0, len(symb))
+    cod.append(symb[pas])
+print(*cod)
