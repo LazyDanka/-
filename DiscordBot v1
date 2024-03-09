@@ -69,4 +69,4 @@ async def on_message(message):
     else:
         await message.channel.send(message.content)
 
-client.run("MTIxMzUxNDI0NDIxNDEwMDEzMQ.GgDOni.XI9PyAGFytr6PFIDk4A2PiHWI9Nj0-hmYQqZ5M")
+client.run("СЕКРЕТНЫЙ ТОКЕН")
