@@ -1,0 +1,72 @@
+import discord
+import time
+from bot_logic import gen_pass
+from bot_logic import monet
+from bot_logic import vrem
+from bot_logic import rnum
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print(f'Бот {client.user} был запущен')
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith('$привет'):
+        await message.channel.send("Привет!")
+    elif message.content.startswith('$пока'):
+        await message.channel.send("Пока!")
+    elif message.content.startswith('$пароль'):
+        await message.channel.send(gen_pass(10))
+    elif message.content.startswith('$монета'):
+        await message.channel.send(monet())
+    elif message.content.startswith('$время'):
+        await message.channel.send(vrem())
+    elif message.content.startswith('$число'):
+        await message.channel.send(rnum())
+    elif message.content.startswith('$имя'):
+        await message.channel.send(message.author)
+    elif message.content.startswith('$бот'):
+        await message.channel.send(client.user)
+    elif message.content.startswith('$таймер'):
+        await message.channel.send(10)
+        time.sleep(1)
+        await message.channel.send(9)
+        time.sleep(1)
+        await message.channel.send(8)
+        time.sleep(1)
+        await message.channel.send(7)
+        time.sleep(1)
+        await message.channel.send(6)
+        time.sleep(1)
+        await message.channel.send(5)
+        time.sleep(1)
+        await message.channel.send(4)
+        time.sleep(1)
+        await message.channel.send(3)
+        time.sleep(1)
+        await message.channel.send(2)
+        time.sleep(1)
+        await message.channel.send(1)
+        time.sleep(1)
+        await message.channel.send(0)
+        await message.channel.send("Время вышло!")
+    if message.content.startswith('$команды'):
+        await message.channel.send("Список команд:")
+        await message.channel.send("$команды")
+        await message.channel.send("$привет")
+        await message.channel.send("$пока")
+        await message.channel.send("$пароль")
+        await message.channel.send("$монета")
+        await message.channel.send("$время")
+        await message.channel.send("$число")
+        await message.channel.send("$имя")
+        await message.channel.send("$бот")
+        await message.channel.send("$таймер")
+    else:
+        await message.channel.send(message.content)
+
+client.run("MTIxMzUxNDI0NDIxNDEwMDEzMQ.GgDOni.XI9PyAGFytr6PFIDk4A2PiHWI9Nj0-hmYQqZ5M")
