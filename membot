@@ -1,0 +1,45 @@
+import discord
+import random
+import requests
+import os
+from discord.ext import commands
+from options2 import TOKEN
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Бот {bot.user} запущен')
+
+
+# noinspection PyTypeChecker
+@bot.command()
+async def mem(ctx):
+    random_mem = random.choice(os.listdir('imgs'))
+    with open(f'imgs/{random_mem}', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+
+
+# noinspection PyTypeChecker
+@bot.command()
+async def animal(ctx):
+    random_anim = random.choice(os.listdir('anim'))
+    with open(f'anim/{random_anim}', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+
+@bot.command('duck')
+async def duck(ctx):
+    def get_duck_image_url():
+        url = 'https://random-d.uk/api/random'
+        res = requests.get(url)
+        data = res.json()
+        return data['url']
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
+bot.run(TOKEN)
