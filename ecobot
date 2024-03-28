@@ -1,0 +1,55 @@
+import discord
+import requests
+from discord.ext import commands
+from options2 import TOKEN
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='!', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Бот {bot.user} запущен')
+
+@bot.command()
+async def картон(ctx):
+    with open(f'Снимок экрана 2024-03-23 185308.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    await ctx.send('Картон разлагается 2-3 месяца.')
+    await ctx.send('Решение: переробатывать картон или делать разные поделки')
+
+@bot.command()
+async def алюминий(ctx):
+    with open(f'Снимок экрана 2024-03-23 185337.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    await ctx.send('Алюминиевые банки разлагаются 200 лет.')
+    await ctx.send('Решение: переробатывать алюминиевые банки или делать разные поделки')
+
+@bot.command()
+async def батарейки(ctx):
+    with open(f'Снимок экрана 2024-03-23 185320.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    await ctx.send('Батарейки разлагаются более 2 млн лет.')
+    await ctx.send('Решение: выбрасыввать батарейки в специальные мусорки')
+
+@bot.command()
+async def стекло(ctx):
+    with open(f'Снимок экрана 2024-03-23 185328.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    await ctx.send('Стекло разлагается 1-2 млн лет.')
+    await ctx.send('Решение: выбрасывать стекло в специальные мусорки')
+
+@bot.command()
+async def пластик(ctx):
+    with open(f'Снимок экрана 2024-03-23 185348.png', 'rb') as f:
+        picture = discord.File(f)
+    await ctx.send(file=picture)
+    await ctx.send('Пластик разлагается 500 лет.')
+    await ctx.send('Решение: переробатывать пластик или делать разные поделки')
+
+bot.run(TOKEN)
